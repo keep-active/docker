@@ -1,0 +1,28 @@
+version: '3'
+services:
+  sentinel1:
+    image: redis:latest
+    container_name: redis_sentinel_1
+    ports:
+      - "26379:26379"
+    volumes:
+      - ./sentinel1/sentinel.conf:/usr/local/etc/redis/sentinel.conf
+    command: /bin/bash -c "redis-sentinel /usr/local/etc/redis/sentinel.conf"
+
+  sentinel2:
+    image: redis:latest
+    container_name: redis_sentinel_2
+    ports:
+      - "26380:26379"
+    volumes:
+      - ./sentinel2/sentinel.conf:/usr/local/etc/redis/sentinel.conf
+    command: /bin/bash -c "redis-sentinel /usr/local/etc/redis/sentinel.conf"
+
+  sentinel3:
+    image: redis:latest
+    container_name: redis_sentinel_3
+    ports:
+      - "26381:26379"
+    volumes:
+      - ./sentinel3/sentinel.conf:/usr/local/etc/redis/sentinel.conf
+    command: /bin/bash -c "redis-sentinel /usr/local/etc/redis/sentinel.conf"
